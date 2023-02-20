@@ -1,5 +1,9 @@
 package hellojpa;
 
+import hellojpa.inheritence.Item;
+import hellojpa.inheritence.Movie;
+import hellojpa.mapping.Member;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -54,7 +58,7 @@ public class JpaMain {
             // entity는 controller에서 사용하면 X, toString(), JSON 생성 라이브러리로 무한루프 생성 가능성이 높다. 그래서 DTO를 사용해야 한다.
             // 단방향 매핑을 잘 하고 양방향은 필요할 때 추가해도 됨 (테이블에 영향을 주지 않는다.)
             System.out.println("============");
-*/
+
             // 일대다
             // member 생성
             Member member = saveMember(em);
@@ -64,6 +68,19 @@ public class JpaMain {
             team.getMembers().add(member);
             em.persist(team);
             // team 생성 후 member.team_id update
+*/
+            Movie movie = new Movie();
+            movie.setDirector("aaa");
+            movie.setActor("bbbb");
+            movie.setName("바람과 함께 사라지다.");
+            movie.setPrice(10000);
+            em.persist(movie);
+
+            em.flush();
+            em.clear();
+
+            Item item = em.find(Item.class, movie.getId());
+            System.out.println("item = " + item);
 
             tx.commit();
         } catch (Exception E) {
