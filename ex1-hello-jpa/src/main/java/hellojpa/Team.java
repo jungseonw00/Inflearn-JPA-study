@@ -18,7 +18,8 @@ public class Team {
      * 주인이 아닌 쪽은 읽기만 할 수 있다.
      * 외래 키가 있는 곳을 주인으로 정해야 한다. Member.Team
      */
-    @OneToMany(mappedBy = "team")
+    @OneToMany
+    //@JoinColumn(name = "TEAM_ID")
     private List<Member> members = new ArrayList<>(); // ArrayList로 초기화하는게 관례
 
     public Long getId() {
@@ -45,8 +46,5 @@ public class Team {
         this.members = members;
     }
 
-    public void addMember(Member member) {
-        member.setTeam(this);
-        members.add(member);
-    }
+
 }

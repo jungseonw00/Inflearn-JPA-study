@@ -16,7 +16,7 @@ public class JpaMain2 {
         tx.begin();
 
         try {
-
+/*
             Team team = new Team();
             team.setName("teamA");
             em.persist(team);
@@ -32,7 +32,7 @@ public class JpaMain2 {
             System.out.println("member = " + member.getTeam().getName());
             System.out.println("team.getMembers() = " + team.getMembers());
 
-
+*/
             tx.commit();
         } catch (Exception E) {
             tx.rollback();

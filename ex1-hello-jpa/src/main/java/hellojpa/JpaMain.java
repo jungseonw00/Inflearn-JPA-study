@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
 
@@ -31,7 +30,6 @@ public class JpaMain {
 
             return member.team_id = null
             연관관계 주인은 member의 team이기에 member.team에 값을 넣어주어야 한다.
-            */
 
             // 저장 After
             Team team = new Team();
@@ -56,6 +54,16 @@ public class JpaMain {
             // entity는 controller에서 사용하면 X, toString(), JSON 생성 라이브러리로 무한루프 생성 가능성이 높다. 그래서 DTO를 사용해야 한다.
             // 단방향 매핑을 잘 하고 양방향은 필요할 때 추가해도 됨 (테이블에 영향을 주지 않는다.)
             System.out.println("============");
+*/
+            // 일대다
+            // member 생성
+            Member member = saveMember(em);
+
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
+            em.persist(team);
+            // team 생성 후 member.team_id update
 
             tx.commit();
         } catch (Exception E) {
@@ -64,5 +72,13 @@ public class JpaMain {
             em.close();
         }
         emf.close();
+    }
+
+    private static Member saveMember(EntityManager em) {
+        Member member = new Member();
+        member.setUsername("member1");
+
+        em.persist(member);
+        return member;
     }
 }
