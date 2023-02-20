@@ -16,9 +16,6 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
-//    @Column(name = "TEAM_ID")
-//    private Long teamId;
-
     public Long getId() {
         return id;
     }
@@ -43,5 +40,12 @@ public class Member {
         this.team = team;
     }
 
-
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", team=" + team +
+                '}';
+    }
 }
