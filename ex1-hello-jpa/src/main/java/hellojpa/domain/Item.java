@@ -1,17 +1,18 @@
-package hellojpa;
+package hellojpa.domain;
 
 import javax.persistence.*;
 
-import static javax.persistence.InheritanceType.JOINED;
+import static javax.persistence.InheritanceType.SINGLE_TABLE;
+import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 
 @Entity
-@Inheritance(strategy = JOINED)
-public class Item {
+@Inheritance(strategy = TABLE_PER_CLASS)
+@DiscriminatorColumn
+public abstract class Item {
 
     @Id
     @GeneratedValue
     private Long id;
-
     private String name;
     private int price;
 

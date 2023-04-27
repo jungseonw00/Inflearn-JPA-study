@@ -9,6 +9,7 @@
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value="tiger"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/study?serverTimezone=Asia/Seoul&amp;useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+
             <!-- SQL 표준을 지키지 않는 특정 DB만의 고유한 기능을 맞춰주는 역할 -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
 

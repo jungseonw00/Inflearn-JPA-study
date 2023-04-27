@@ -1,5 +1,8 @@
 package hellojpa;
 
+import hellojpa.domain.Item;
+import hellojpa.domain.Movie;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -23,8 +26,12 @@ public class JpaMain {
             movie.setPrice(10000);
 
             em.persist(movie);
+
             em.flush();
             em.clear();
+
+            Item item = em.find(Item.class, movie.getId());
+            System.out.println("item = " + item);
 
             tx.commit();
         } catch (Exception e) {
